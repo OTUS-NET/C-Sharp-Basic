@@ -37,7 +37,7 @@
         User? GetUser(long telegramUserId);
     }
     ```
-    - Создать класс `UserService`, который реализует интерфейс `IUserService`
+    - Создать класс `UserService`, который реализует интерфейс `IUserService`. Заполнять telegramUserId и telegramUserName нужно из значений `Update.Message.From`
     - Добавить использование `IUserService` в `UpdateHandler`. Получать `IUserService` нужно через конструктор
     - При команде `/start` нужно вызвать метод `IUserService.RegisterUser`.
     - Если пользователь не зарегистрирован, то ему доступны только команды `/help` `/info`
