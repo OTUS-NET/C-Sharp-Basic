@@ -26,37 +26,45 @@ public class ConsoleBotClient : ITelegramBotClient
     {
         ArgumentNullException.ThrowIfNull(handler, nameof(handler));
 
-        using var cts = new CancellationTokenSource();
-        Console.CancelKeyPress += (sender, e) =>
+        var cts = new CancellationTokenSource();
+        ConsoleCancelEventHandler cancelHandler = (sender, e) =>
         {
             cts.Cancel();
             e.Cancel = true;
         };
+        Console.CancelKeyPress += cancelHandler;
 
-        WriteLineColor("Бот запущен. Введите сообщение", ConsoleColor.Magenta);
-
-        var counter = 0;
-        while (cts.IsCancellationRequested is false)
+        try
         {
-            var input = Console.ReadLine();
-            if (input is null)
-                break;
+            WriteLineColor("Бот запущен. Введите сообщение", ConsoleColor.Magenta);
+            var counter = 0;
 
-            var update = new Update
+            while (cts.IsCancellationRequested is false)
             {
-                Message = new Message
+                var input = Console.ReadLine();
+                if (input is null)
+                    break;
+
+                var update = new Update
                 {
-                    Id = Interlocked.Increment(ref counter),
-                    Text = input,
-                    Chat = _chat,
-                    From = _user
-                }
-            };
+                    Message = new Message
+                    {
+                        Id = Interlocked.Increment(ref counter),
+                        Text = input,
+                        Chat = _chat,
+                        From = _user
+                    }
+                };
 
-            handler.HandleUpdateAsync(this, update);
+                handler.HandleUpdateAsync(this, update);
+            }
         }
-
-        WriteLineColor("Бот остановлен", ConsoleColor.Magenta);
+        finally
+        {
+            Console.CancelKeyPress -= cancelHandler;
+            cts.Dispose();
+            WriteLineColor("Бот остановлен", ConsoleColor.Magenta);
+        }
     }
 
     private static void WriteLineColor(string text, ConsoleColor color)
