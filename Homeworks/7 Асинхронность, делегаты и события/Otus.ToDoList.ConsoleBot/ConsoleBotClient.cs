@@ -26,22 +26,12 @@ public class ConsoleBotClient : ITelegramBotClient
     {
         ArgumentNullException.ThrowIfNull(handler, nameof(handler));
 
-        var cts = new CancellationTokenSource();
-        using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(ct, cts.Token);
-
-        ConsoleCancelEventHandler cancelHandler = (sender, e) =>
-        {
-            cts.Cancel();
-            e.Cancel = true;
-        };
-        Console.CancelKeyPress += cancelHandler;
-
         try
         {
             WriteLineColor("Бот запущен. Введите сообщение", ConsoleColor.Magenta);
             var counter = 0;
 
-            while (linkedCts.Token.IsCancellationRequested is false)
+            while (ct.IsCancellationRequested is false)
             {
                 var input = Console.ReadLine();
                 if (input is null)
@@ -62,24 +52,22 @@ public class ConsoleBotClient : ITelegramBotClient
                 {
                     try
                     {
-                        await handler.HandleUpdateAsync(this, update, linkedCts.Token);
+                        await handler.HandleUpdateAsync(this, update, ct);
                     }
                     catch (OperationCanceledException) { }
                     catch (Exception ex)
                     {
                         try
                         {
-                            await handler.HandleErrorAsync(this, ex, linkedCts.Token);
+                            await handler.HandleErrorAsync(this, ex, ct);
                         }
                         catch (OperationCanceledException) { }
                     }
-                }, linkedCts.Token);
+                }, ct);
             }
         }
         finally
         {
-            Console.CancelKeyPress -= cancelHandler;
-            cts.Dispose();
             WriteLineColor("Бот остановлен", ConsoleColor.Magenta);
         }
     }

@@ -3,12 +3,10 @@
 using Otus.ToDoList.ConsoleBot;
 using Otus.ToDoList.ConsoleBot.Types;
 
-var cts = new CancellationTokenSource();
+using var cts = new CancellationTokenSource();
 var handler = new UpdateHandler();
 var botClient = new ConsoleBotClient();
 botClient.StartReceiving(handler, cts.Token);
-
-await Task.Delay(Timeout.Infinite, cts.Token);
 
 class UpdateHandler : IUpdateHandler
 {
