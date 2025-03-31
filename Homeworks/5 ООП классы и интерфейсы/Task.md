@@ -21,7 +21,7 @@
 2. Удалить команду `/echo`
 3. Изменение логики команды `/start`
     - Не нужно запрашивать имя
-    - Добавить класс `User`
+    - Добавить класс `ToDoUser`
         - Свойства
             - Guid UserId
             - long TelegramUserId
@@ -32,8 +32,8 @@
     ```csharp
     interface IUserService
     {
-        User RegisterUser(long telegramUserId, string telegramUserName);
-        User? GetUser(long telegramUserId);
+        ToDoUser RegisterUser(long telegramUserId, string telegramUserName);
+        ToDoUser? GetUser(long telegramUserId);
     }
     ```
     - Создать класс `UserService`, который реализует интерфейс `IUserService`. Заполнять telegramUserId и telegramUserName нужно из значений `Update.Message.From`
@@ -51,7 +51,7 @@
             - string Name
             - DateTime CreatedAt
             - ToDoItemState State
-            - DateTime? StateChangedAt - обновляется при изменении State
+            - DateTime? StateChangedAt
     - Добавить использование класса `ToDoItem` вместо хранения только имени задачи
 6. Изменение логики `/showtasks`
     - Выводить только задачи с `ToDoItemState.Active`
@@ -63,7 +63,7 @@
     {
         //Возвращает ToDoItem для UserId со статусом Active
         IReadOnlyList<ToDoItem> GetActiveByUserId(Guid userId);
-        ToDoItem Add(User user, string name);
+        ToDoItem Add(ToDoUser user, string name);
         void MarkCompleted(Guid id);
         void Delete(Guid id);
     }

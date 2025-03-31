@@ -19,7 +19,7 @@
     {
         User? GetUser(Guid userId);
         User? GetUserByTelegramUserId(long telegramUserId);
-        void Add(User user);
+        void Add(ToDoUser user);
     }
     ```
     - Создать класс `InMemoryUserRepository`, который реализует интерфейс `IUserRepository`. В качестве хранилища использовать List
@@ -56,7 +56,7 @@
     - Пример вывода: Статистика по задачам на 01.01.2025 00:00:00. Всего: 10; Завершенных: 7; Активных: 3;
 4. Лямбды. Добавление команды `/find`
     - Добавить метод `IReadOnlyList<ToDoItem> Find(Guid userId, Func<ToDoItem, bool> predicate);` в интерфейс `IToDoRepository`. Метод должен возвращать все задачи пользователя, которые удовлетворяют предикату.
-    - Добавить метод `IReadOnlyList<ToDoItem> Find(User user, string namePrefix);` в интерфейс `IToDoService`. Метод должен возвращать все задачи пользователя, которые начинаются на namePrefix. Для этого нужно использовать метод `IToDoRepository.Find`
+    - Добавить метод `IReadOnlyList<ToDoItem> Find(ToDoUser user, string namePrefix);` в интерфейс `IToDoService`. Метод должен возвращать все задачи пользователя, которые начинаются на namePrefix. Для этого нужно использовать метод `IToDoRepository.Find`
     - Добавить обработку новой команды `/find`.
     - Пример команды: `/find Имя`
     - Вывод в консоль должен быть как в `/showtask`
@@ -69,7 +69,7 @@
     │   │   ├── IToDoRepository.cs
     │   │   └── ...
     │   ├── Entities/
-    │   │   ├── User.cs
+    │   │   ├── ToDoUser.cs
     │   │   ├── ToDoItem.cs
     │   │   └── ...
     │   ├── Exceptions/
@@ -92,7 +92,6 @@
         └── ...
     ```
 6. Обновить `/help`
-
 ---
 
 ### Критерии оценивания
