@@ -17,6 +17,7 @@
     - Переключиться на использование асинхронных методов из библиотеки `Otus.ToDoList.ConsoleBot`. Обратите внимание на методы из `IUpdateHandler` и `ITelegramBotClient`
     - Реализовать метод `IUpdateHandler.HandleErrorAsync`. В нем нужно выводить информацию об ошибке в консоль
     - В метод `ITelegramBotClient.StartReceiving` нужно передавать `CancellationToken`. Его нужно создать с помощью `CancellationTokenSource`
+    - Код библиотеки `Otus.ToDoList.ConsoleBot` не нужно изменять
 2. Добавление делегатов и событий
     - Создать делегат типа `MessageEventHandler`, который принимает `string message`, а возращает `void`
     - В класс `UpdateHandler` добавить события `OnHandleUpdateStarted` и `OnHandleUpdateCompleted`. Они должны быть типа `MessageEventHandler`.

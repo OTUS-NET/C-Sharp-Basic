@@ -18,6 +18,7 @@
     - Создать класс `UpdateHandler`, который реализует интерфейс `IUpdateHandler`, и перенести в метод `HandleUpdateAsync` обработку всех команд. Вместо Console.WriteLine использовать `SendMessage` у `ITelegramBotClient`
     - Перенести try/catch в `HandleUpdateAsync`. В Main оставить catch(Exception)
     - Для вывода в коноль сообщений использовать метод `ITelegramBotClient.SendMessage`
+    - Код библиотеки `Otus.ToDoList.ConsoleBot` не нужно изменять
 2. Удалить команду `/echo`
 3. Изменение логики команды `/start`
     - Не нужно запрашивать имя
