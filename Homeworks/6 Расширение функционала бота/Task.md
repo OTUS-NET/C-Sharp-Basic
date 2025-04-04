@@ -29,6 +29,7 @@
     ```csharp
     interface IToDoRepository
     {
+        IReadOnlyList<ToDoItem> GetAllByUserId(Guid userId);
         //Возвращает ToDoItem для UserId со статусом Active
         IReadOnlyList<ToDoItem> GetActiveByUserId(Guid userId);
         void Add(ToDoItem item);
