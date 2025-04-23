@@ -48,7 +48,7 @@
     - Добавить класс `ToDoItem`
         - Свойства
             - Guid Id
-            - User User
+            - ToDoUser User
             - string Name
             - DateTime CreatedAt
             - ToDoItemState State
