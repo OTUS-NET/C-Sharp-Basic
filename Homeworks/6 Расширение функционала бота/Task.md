@@ -32,6 +32,7 @@
         IReadOnlyList<ToDoItem> GetAllByUserId(Guid userId);
         //Возвращает ToDoItem для UserId со статусом Active
         IReadOnlyList<ToDoItem> GetActiveByUserId(Guid userId);
+        ToDoItem? Get(Guid id);
         void Add(ToDoItem item);
         void Update(ToDoItem item);
         void Delete(Guid id);
