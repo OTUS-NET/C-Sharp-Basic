@@ -18,8 +18,7 @@
     - Добавить nuget пакет `Telegram.Bot` (https://github.com/TelegramBots/Telegram.Bot) 
     - Убедиться, что интерфейсы `IUpdateHandler` и `ITelegramBotClient` из `Otus.ToDoList.ConsoleBot` совместимы с аналогичными интерфейсами из `Telegram.Bot`. Поправить using`и в файлах
     - Заменить `ConsoleBotClient` на `TelegramBotClient`
-    - 
-    Пример кода:
+    - Пример кода:
     ```csharp
     var botClient = new TelegramBotClient("<token>");
     var receiverOptions = new ReceiverOptions
