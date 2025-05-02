@@ -50,7 +50,9 @@
 
 1. Избегайте утечку токена вашего Telegram-бота. При отправки ДЗ на проверку убедитесь, что в коде нет токена. Также не делает коммиты в git-репозиторий с токеном.
 
-2. Полезные ресурсы 
+2. При использование markdown нужно экранировать некоторые спецсимволы https://core.telegram.org/bots/api#markdownv2-style
+
+3. Полезные ресурсы 
     - Документация библиотеки: https://github.com/TelegramBots/Telegram.Bot
     - Пример реализации: https://github.com/TelegramBots/Telegram.Bot.Examples
 
