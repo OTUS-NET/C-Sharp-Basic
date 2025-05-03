@@ -20,7 +20,7 @@
         - Свойства
             - ScenarioType CurrentScenario
             - string? CurrentStep
-            - Dictionary<string, object> Context
+            - Dictionary<string, object> Data
         - Конструктор `ScenarioContext(ScenarioType scenario)`
     - Добавить интерфейс 
     ```csharp
@@ -86,7 +86,10 @@
 
 ### Критерии оценивания
 
-- Пункты 1-4 - 8 баллов
+- Пункт 1 - 2 балла
+- Пункт 2 - 2 балла
+- Пункт 3 - 2 балла
+- Пункт 4 - 2 балла
 - Пункт 5 - 1 балла
 - Пункт 6 - 1 балла
 
