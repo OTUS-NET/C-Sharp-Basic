@@ -18,6 +18,7 @@
         - AddTask
     - Добавить класс `ScenarioContext`
         - Свойства
+            - long UserId //Id пользователя в Telegram
             - ScenarioType CurrentScenario
             - string? CurrentStep
             - Dictionary<string, object> Data
@@ -42,7 +43,7 @@
     public interface IScenario
     {
         bool CanHandle(ScenarioType scenario);
-        Task<ScenarioResult> HandleMessageAsync(ITelegramBotClient bot, ScenarioContext context, Message message, CancellationToken ct);
+        Task<ScenarioResult> HandleMessageAsync(ITelegramBotClient bot, ScenarioContext context, Update update, CancellationToken ct);
     }
     ```
 3. Обновление `UpdateHandler`
@@ -50,7 +51,7 @@
         - IEnumerable<IScenario> scenarios
         - IScenarioContextRepository contextRepository
     - Добавить метод `IScenario GetScenario(ScenarioType scenario)`, который возвращает соответствующий сценарий. Если сценарий не найден, то выбрасывать исключение.
-    - Добавить метод `Task ProcessScenario(ScenarioContext context, Message msg, CancellationToken ct)`
+    - Добавить метод `Task ProcessScenario(ScenarioContext context, Update update, CancellationToken ct)`
         - Получает сценарий через метод `GetScenario`
         - Вызывает метод `IScenario.HandleMessageAsync`
         - ЕСЛИ метод вернул ScenarioResult.Completed, TO вызвать `IScenarioContextRepository.ResetContext`
