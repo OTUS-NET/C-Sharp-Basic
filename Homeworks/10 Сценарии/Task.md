@@ -48,7 +48,7 @@
     ```
 3. Обновление `UpdateHandler`
     - Добавить в конструктор аргументы:
-        - IEnumerable<IScenario> scenarios
+        - `IEnumerable<IScenario>` scenarios
         - IScenarioContextRepository contextRepository
     - Добавить метод `IScenario GetScenario(ScenarioType scenario)`, который возвращает соответствующий сценарий. Если сценарий не найден, то выбрасывать исключение.
     - Добавить метод `Task ProcessScenario(ScenarioContext context, Update update, CancellationToken ct)`
