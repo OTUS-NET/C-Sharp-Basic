@@ -55,7 +55,7 @@
         - Получает сценарий через метод `GetScenario`
         - Вызывает метод `IScenario.HandleMessageAsync`
         - ЕСЛИ метод вернул ScenarioResult.Completed, TO вызвать `IScenarioContextRepository.ResetContext`
-        - ИНАЧЕ вызвать `IScenarioContextRepository.ResetContext`
+        - ИНАЧЕ вызвать `IScenarioContextRepository.SetContext`
     - В метод `HandleUpdateAsync` добавить получение `ScenarioContext` через `IScenarioContextRepository` перед обработкой команд.
         - ЕСЛИ `ScenarioContext` найден, ТО вызвать метод `ProcessScenario` и завершить обработку
 4. Добавление `AddTaskScenario`
