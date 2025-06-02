@@ -68,15 +68,15 @@
                 - public override string ToString() - переопределить метод. Он должен возвращать Action
         - Класс `ToDoListCallbackDto`. Наследовать от CallbackDto. Помимо `Action`, есть `ToDoListId`
             Свойства:
-                -  Guid ToDoListId
+                -  Guid? ToDoListId
             Методы:
                 - public static new ToDoListCallbackDto FromString(string input) //На вход принимает строку ввида "{action}|{toDoListId}|{prop2}...". Нужно создать ToDoListCallbackDto с Action = action и ToDoListId = toDoListId.
                 - public override string ToString() - переопределить метод. Он должен возвращать $"{base.ToString()}|{ToDoListId}"
     - При получении команды /show нужно отправлять сообщение с текстом "Выберите список" и кнопками InlineKeyboardButton (см. Демонстрация работы бота)
         - Для этого нужно использовать класс `InlineKeyboardMarkup` и добавлять в него кнопки с помощью `InlineKeyboardButton.WithCallbackData(string text, string callbackData)`
         - Максимальный размер callbackData составляет 64 символа, поэтому в классах `CallbackDto` мы будем использовать компактный формат приведение к строкам
-        - Для "📌Без списка" в callbackData пишем "show_nolist" 
-        - Для остальных списков в callbackData пишем ToDoListCallbackDto.ToString(). Action = "show"
+        - Для "📌Без списка" в callbackData пишем ToDoListCallbackDto.ToString(). Action = "show", ToDoListId = null
+        - Для остальных списков в callbackData пишем ToDoListCallbackDto.ToString(). Action = "show", ToDoListId = Id
         - Для "🆕Добавить" в callbackData пишем "addlist". Для "❌Удалить" в callbackData пишем "deletelist"
 5. Обработка нажатия на кнопки
     - В UpdateHandler добавить обработки нажатия на Inline кнопки. За это отвечает update.CallbackQuery. Пример:
@@ -91,7 +91,6 @@
     - В `OnCallbackQuery` добавить проверку на то, что пользователь зарегистрирован. Незарегистрированным пользователям `CallbackQuery` не обрабатываем
     - При получении `CallbackQuery` создаем `CallbackDto` с помощью CallbackDto.FromString(query.Data)
     - ЕСЛИ Action равен
-        - "show_nolist" TO вернуть задачи, которые не привязаны к списку
         - "show" TO получить `ToDoListCallbackDto` и вернуть задачи, которые привязаны к списку ToDoListCallbackDto.ToDoListId
 6. Добавление и удаление списка
     - Добавить `AddList` в `ScenarioType`
