@@ -62,12 +62,12 @@
     - Добавить класс `AddTaskScenario`, который реализует интерфейс `IScenario` и в конструкторе принимает `IUserService` и `IToDoService`
     - Добавить обработку шагов сценария (`ScenarioContext.CurrentStep`) через switch case
         - case null
-            - Получить `ToDoUser` и сохранить его в `ScenarioContext.Context`.
+            - Получить `ToDoUser` и сохранить его в `ScenarioContext.Data`.
             - Отправить пользователю сообщение "Введите название задачи:"
             - Обновить `ScenarioContext.CurrentStep` на "Name"
             - Вернуть `ScenarioResult.Transition`
         - case "Name"
-            - Вызвать `IToDoService.Add`. Передать `ToDoUser` из `ScenarioContext.Context` и name из сообщения
+            - Вызвать `IToDoService.Add`. Передать `ToDoUser` из `ScenarioContext.Data` и name из сообщения
             - Вернуть `ScenarioResult.Completed`
     - Обновить обработку команды `/addtask` в `UpdateHandler`
         - При получении команды `/addtask` создать `ScenarioContext` c `ScenarioType.AddTask` и вызвать метод `ProcessScenario`
