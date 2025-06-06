@@ -16,7 +16,9 @@
 
 Перед выполнением нужно ознакомится с [Правила отправки домашнего задания на проверку](https://github.com/OTUS-NET/C-Sharp-Basic/blob/main/Homeworks/README.md)
 
-![Демонстрация работы бота](Demo.gif)
+В данном ДЗ добавляется поддержка списков для задач. Удобный функционал, чтобы сгуппировать задачи по смыслу.
+
+![Демонстрация работы бота](Demo11.gif)
 
 1. В `InMemoryScenarioContextRepository` заменить использование `Dictionary` на `ConcurrentDictionary`
 2. Добавление сущности `ToDoList`

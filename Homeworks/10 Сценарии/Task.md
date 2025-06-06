@@ -14,41 +14,53 @@
 
 Перед выполнением нужно ознакомится с [Правила отправки домашнего задания на проверку](https://github.com/OTUS-NET/C-Sharp-Basic/blob/main/Homeworks/README.md)
 
-1. Добавление `ScenarioContext`
-    - Добавить enum `ScenarioType` со значениями
+В данном ДЗ добавляется поддержка сценариев - это последовательный набор действий с сохранением промежуточного состояния. Они нужны для обработки цепочек действий, поддержки диалога и улучшения UX.
+
+![Демонстрация работы бота](Demo10.gif)
+
+1. Добавление `ScenarioContext`. Класс, который будет хранить информацию о контексте(сессии) пользователя. 
+    - Добавить enum `ScenarioType`. В нем будем хранить все поддерживаемые сценарии. Значениями:
         - None
         - AddTask
     - Добавить класс `ScenarioContext`
         - Свойства
             - long UserId //Id пользователя в Telegram
             - ScenarioType CurrentScenario
-            - string? CurrentStep
-            - Dictionary<string, object> Data
+            - string? CurrentStep //Текущий шаг сценария
+            - Dictionary<string, object> Data //Дополнительная инфрмация, необходимая для работы сценария
         - Конструктор `ScenarioContext(ScenarioType scenario)`
     - Добавить интерфейс 
     ```csharp
+    //Репозиторий, который отвечает за доступ к контекстам пользователей
     public interface IScenarioContextRepository
     {
+        //Получить контекст пользователя
         Task<ScenarioContext?> GetContext(long userId, CancellationToken ct);
+        //Задать контекст пользователя
         Task SetContext(long userId, ScenarioContext context, CancellationToken ct);
+        //Сбросить (очистить) контекст пользователя
         Task ResetContext(long userId, CancellationToken ct);
     }
     ```
     - Создать класс `InMemoryScenarioContextRepository`, который реализует интерфейс `IScenarioContextRepository`. В качестве хранилища использовать `Dictionary<long, ScenarioContext>`
-    - Файлы размещать в папке `./TelegramBot/Scenarios`
+    - Файлы (классы и интерфейсы) размещать в папке `./TelegramBot/Scenarios`
 2. Добавление поддержки сценариев
-    - Добавить enum `ScenarioResult` со значениями
+    - Добавить enum `ScenarioResult`. Нужен для получения результата выполнения сценария. Значениями:
         - Transition - Переход к следующему шагу. Сообщение обработано, но сценарий еще не завершен
         - Completed - Сценарий завершен
-    - Добавить интерфейс 
+    - Добавить интерфейс `IScenario`. Нужен для определения логики работы сценариев
     ```csharp
     public interface IScenario
     {
+        //Проверяет, может ли текущий сценарий обрабатывать указанный тип сценария.
+        //Используется для определения подходящего обработчика в системе сценариев.
         bool CanHandle(ScenarioType scenario);
+        //Обрабатывает входящее сообщение от пользователя в рамках текущего сценария.
+        //Включает основную бизнес-логику
         Task<ScenarioResult> HandleMessageAsync(ITelegramBotClient bot, ScenarioContext context, Update update, CancellationToken ct);
     }
     ```
-3. Обновление `UpdateHandler`
+3. Обновление `UpdateHandler` для поддержки сценариев
     - Добавить в конструктор аргументы:
         - `IEnumerable<IScenario>` scenarios
         - IScenarioContextRepository contextRepository
