@@ -92,6 +92,7 @@
         _ => OnUnknown(update)
     });
     ```
+    - Чтобы получать обновления по `CallbackQuery` нужно добавить кго в ReceiverOptions.AllowedUpdates 
     - В `OnCallbackQuery` добавить проверку на то, что пользователь зарегистрирован. Незарегистрированным пользователям `CallbackQuery` не обрабатываем
     - При получении `CallbackQuery` создаем `CallbackDto` с помощью CallbackDto.FromString(query.Data)
     - ЕСЛИ Action равен
