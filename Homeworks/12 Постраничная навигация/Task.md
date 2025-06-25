@@ -69,7 +69,7 @@
             - Если listDto.Page > 0 то добавить кнопку ⬅️ с PagedListCallbackDto(listDto.Action, listDto.ToDoListId, page - 1)
             - Если listDto.Page < totalPages - 1 то добавить кнопку ➡️ с PagedListCallbackDto(listDto.Action, listDto.ToDoListId, page + 1)
     - Использовать метод `BuildPagedButtons` при обработке Action = "show"
-    - При при переключении между страницами и переходе от списка к задачам долдно присылаться не новое сообщение, а изменяться текущее. Это можно реализовать с помощью метода `bot.EditMessageText`. См. демонстрацию
+    - При при переключении между страницами и переходе от списка к задачам должно присылаться не новое сообщение, а изменяться текущее. Это можно реализовать с помощью метода `bot.EditMessageText`. См. демонстрацию
 4. Добавление просмотра выполненных задач
     - При обработке команды Action = "show" добавить вывод кнопки "☑️Посмотреть выполненные" с PagedListCallbackDto("show_completed", ToDoListId, 0)
     - Добавить обработку команды Action = "show_completed" в метод `OnCallbackQuery`. Должна поддерживаться пагинация

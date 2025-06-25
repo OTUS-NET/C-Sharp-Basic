@@ -92,7 +92,7 @@
         _ => OnUnknown(update)
     });
     ```
-    - В `OnCallbackQuery` добавить проверку на то, что пользователь зарегистрирован. Незарегистрированным пользователям `CallbackQuery` не обрабатываем
+    - В `OnCallbackQuery` добавить проверку на то, что пользователь зарегистрирован. Незарегистрированным пользователям `CallbackQuery` не обрабатываем. Также нужно проверять запущен ли для пользователя сценарий и вызывать `ProcessScenario`
     - При получении `CallbackQuery` создаем `CallbackDto` с помощью CallbackDto.FromString(query.Data)
     - ЕСЛИ Action равен
         - "show" TO получить `ToDoListCallbackDto` и вернуть задачи, которые привязаны к списку ToDoListCallbackDto.ToDoListId
