@@ -22,3 +22,6 @@ class UpdateHandler : IUpdateHandler
     }
 }
 ```
+Демонстрация работы библиотеки
+
+![Демо](Demo05.2.gif)
