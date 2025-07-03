@@ -14,16 +14,15 @@
 
 Перед выполнением нужно ознакомится с [Правила отправки домашнего задания на проверку](https://github.com/OTUS-NET/C-Sharp-Basic/blob/main/Homeworks/README.md)
 
-1. Подключение nuget-пакета `linq2db.PostgreSQL`
-    - Подключите в проект последную версию nuget пакета `linq2db.PostgreSQL`
-2. Подготовка моделей для описания структуры БД
+1. Подготовка моделей для описания структуры БД
+   - Подключите в проект последную версию nuget пакета `linq2db.PostgreSQL`
     - Удалить все конструкторы и сделайте все свойства открытыми (get; set;) в классах в Core/Entities. Будем использовать анемичную модель, для этого нужны чистые классы
     - Создать классы модели для таблиц в Core/DataAccess/Models
         - `ToDoItemModel`
         - `ToDoListModel`
         - `ToDoUserModel`
     - Через атрибуты отпределите имена таблиц([Table("...")]), первичные ключи ([PrimaryKey]), колонки ([Column]), внешние ключи ([Association(ThisKey = nameof(), OtherKey = nameof())]). Подробную информацию можно найти в [документации](https://linq2db.github.io/#define-poco-class)
-3. Создание DataContext
+2. Создание DataContext
     - Создайте класс `ToDoDataContext` в Infrastructure/DataAccess. 
         - Наследуется от DataConnection
         - Конструктор public ToDoDataContext(string connectionString) : base(ProviderName.PostgreSQL, connectionString)
@@ -37,7 +36,7 @@
     }
     ```
     - Создать класс `DataContextFactory`, который реализует интерфейс `IDataContextFactory<ToDoDataContext>`
-4. Создание маппера
+3. Создание маппера
     - Создать статический класс `ModelMapper` в Infrastructure/DataAccess. Через него будем делать маппинг между Infrastructure/DataAccess/Models и Core/DataAccess/Models
     ```csharp
     internal static class ModelMapper
@@ -51,7 +50,7 @@
     }
     ```
     - Реализовать все методы
-5. Реализация SqlToDoRepository
+4. Реализация SqlToDoRepository
     - Создать класс `SqlToDoRepository`, который реализует интерфейс `IToDoRepository`
     - В конструкторе получать IDataContextFactory<ToDoDataContext> factory
     - Реализовать все методы интерфейса. Создавать dbContext в каждом методе. using var dbContext = factory.CreateDataContext();
@@ -62,9 +61,9 @@
         .LoadWith(i => i.List)
         .LoadWith(i => i.List!.User)
     ```
-6. Аналогично создать класс `SqlToDoListRepository`, который реализует интерфейс `IToDoListRepository`
-7. Аналогично создать класс `SqlUserRepository`, который реализует интерфейс `IUserRepository`
-8. Добавление использовать SQL репозиториев
+5. Аналогично создать класс `SqlToDoListRepository`, который реализует интерфейс `IToDoListRepository`
+6. Аналогично создать класс `SqlUserRepository`, который реализует интерфейс `IUserRepository`
+7. Добавление использовать SQL репозиториев
     - Добавить использование этих репозиториев вместо File реализаций
     - Указать connectionString до БД, которая разрабатывалась в ДЗ "Модель базы данных"
 
@@ -72,12 +71,12 @@
 
 ### Критерии оценивания
 
-- Пункты 1-2 - 2 балла
+- Пункт 1 - 2 балла
+- Пункт 2 - 2 балла
 - Пункт 3 - 2 балла
-- Пункт 4 - 2 балла
+- Пункт 4 - 1 балл
 - Пункт 5 - 1 балл
 - Пункт 6 - 1 балл
 - Пункт 7 - 1 балл
-- Пункт 8 - 1 балл
 
 Для зачёта домашнего задания достаточно 8 баллов.
