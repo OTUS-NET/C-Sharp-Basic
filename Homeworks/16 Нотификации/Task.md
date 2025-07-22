@@ -71,7 +71,7 @@
     - Реализовать метод Execute
         - Получить список всех пользователей
         - Для каждого пользователя получить набор просроченных задач. await toDoRepository.GetActiveWithDeadline(user.UserId, DateTime.UtcNow.AddDays(-1).Date, DateTime.UtcNow.Date, ct);
-        - Для каждой задачи создать нотификацию с типом $"Dealine_{task.Id}" и текстом $"Ой! Вы пропустили дедлайн по задаче {task.Name}"
+        - Для каждой задачи создать нотификацию с типом $"Dealine_{task.Id}" и текстом $"Ой\\! Вы пропустили дедлайн по задаче {task.Name}"
     - Добавить фоновую задачу через `AddTask` в `BackgroundTaskRunner`
 5. Добавление `TodayBackgroundTask`. Задача будет добавлять нотификации по задачам, которые запланированы на сегодня
     - Создать класс `TodayBackgroundTask` в папке BackgroundTasks
