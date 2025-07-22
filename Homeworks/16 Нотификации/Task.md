@@ -10,7 +10,7 @@
 
 ### Описание
 
-Ссылка на [GitHub](https://github.com/OTUS-NET/C-Sharp-Basic/tree/main/Homeworks/15%20%D0%A4%D0%BE%D0%BD%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8)
+Ссылка на [GitHub](https://github.com/OTUS-NET/C-Sharp-Basic/blob/main/Homeworks/16%20%D0%9D%D0%BE%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8/Task.md)
 
 Перед выполнением нужно ознакомится с [Правила отправки домашнего задания на проверку](https://github.com/OTUS-NET/C-Sharp-Basic/blob/main/Homeworks/README.md)
 
