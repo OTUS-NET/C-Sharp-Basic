@@ -37,7 +37,7 @@
     ```
     - Создать класс `DataContextFactory`, который реализует интерфейс `IDataContextFactory<ToDoDataContext>`
 3. Создание маппера
-    - Создать статический класс `ModelMapper` в Infrastructure/DataAccess. Через него будем делать маппинг между Infrastructure/DataAccess/Models и Core/DataAccess/Models
+    - Создать статический класс `ModelMapper` в Infrastructure/DataAccess. Через него будем делать маппинг между Infrastructure/DataAccess/Models и Core/Entities
     ```csharp
     internal static class ModelMapper
     {
