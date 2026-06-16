@@ -10,7 +10,7 @@
 
 ### Описание
 
-Перед выполнением нужно ознакомится с [Правила отправки домашнего задания на проверку](https://github.com/OTUS-NET/C-Sharp-Basic/blob/main/Homeworks/README.md)
+Перед выполнением нужно ознакомиться с [Правила отправки домашнего задания на проверку](https://github.com/OTUS-NET/C-Sharp-Basic/blob/main/Homeworks/README.md)
 
 1. Создайте Telegram-бота через BotFather (https://core.telegram.org/bots/features#botfather)
 2. Замена `Otus.ToDoList.ConsoleBot` на библиотеку `Telegram.Bot` (https://github.com/TelegramBots/Telegram.Bot)

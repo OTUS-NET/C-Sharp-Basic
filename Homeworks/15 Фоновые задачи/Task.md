@@ -12,7 +12,7 @@
 
 Ссылка на [GitHub](https://github.com/OTUS-NET/C-Sharp-Basic/tree/main/Homeworks/15%20%D0%A4%D0%BE%D0%BD%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8)
 
-Перед выполнением нужно ознакомится с [Правила отправки домашнего задания на проверку](https://github.com/OTUS-NET/C-Sharp-Basic/blob/main/Homeworks/README.md)
+Перед выполнением нужно ознакомиться с [Правила отправки домашнего задания на проверку](https://github.com/OTUS-NET/C-Sharp-Basic/blob/main/Homeworks/README.md)
 
 1. Построение механизма фоновых задач
     - Создать в проекте папку `BackgroundTasks`
